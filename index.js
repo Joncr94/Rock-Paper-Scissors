@@ -26,8 +26,8 @@ scorereset.addEventListener("click", () => {
     resulttext.textContent = "Result";
     playerscore.textContent = `Your Score: ${score}`;
     computerscore.textContent = `Computer Scores: ${computerscores}`;
-    pmscore.textContent = `Player Match wins: ${pmscores}`
-    cmscore.textContent = `Computer Match wins: ${cmscores}`
+    pmscore.textContent = `Player Game wins: ${pmscores}`
+    cmscore.textContent = `Computer Game wins: ${cmscores}`
     playertext.textContent = "Player:";
     computertext.textContent = "Computer:";
     });    
@@ -61,6 +61,7 @@ choicebuttons.forEach(button => button.addEventListener("click", () => {
 
 }));
 function computerTurn() {
+    if (gameEnded == false){
     const randNum = Math.floor(Math.random()*3) + 1;
     switch(randNum){
         case 1: 
@@ -74,7 +75,9 @@ function computerTurn() {
         break;
     }
 }
+}
 function checkWinner() {
+   
     if (player==computer && gameEnded == false){
         return "Draw!";
     }
@@ -95,22 +98,22 @@ function updateScore(result){
     } else if (result ==="You Lose"){
         computerscores++;
     }
-    if (score === 10 && gameEnded == false) {
+    if (score === 5 && gameEnded == false) {
         resulttext.textContent = "You Won the match";
         pmscores++;
         gameEnded = true;
         return;
-    } else if (computerscores === 10 && gameEnded == false) {
+    } else if (computerscores === 5 && gameEnded == false) {
         resulttext.textContent = "You Lost the match";
         cmscores++;
         gameEnded = true;
         return;
     }
-    else if (computerscores === 10 && gameEnded == true) {
+    else if (computerscores === 5 && gameEnded == true) {
         resulttext.textContent = "You Lost the match";
         return;
     }
-    else if (score === 10 && gameEnded == true) {
+    else if (score === 5 && gameEnded == true) {
         resulttext.textContent = "You Won the match";
         return;
     }
